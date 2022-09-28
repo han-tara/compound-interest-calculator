@@ -1,0 +1,56 @@
+---
+import Links from "./links.astro";
+---
+<div class="flex flex-col lg:gap-4 gap-2 px-12">
+    <div id="title" class="lg:text-3xl text-2xl text-[#747D8C] font-bold whitespace-pre-line text-center">Compound
+        Interest Factor</div>
+    <div id="output" class="lg:text-8xl text-6xl text-[#57606F] font-bold text-center">0.7493</div>
+    <Links/>
+</div>
+
+<script is:inline>
+    //elements
+    const title = document.getElementById('title')
+    const output = document.getElementById('output')
+
+    //calculate
+    function calculate() {
+        switch (factorValue) {
+            case "F/P":
+                title.innerText = "Compound Amount\nFactor"
+                output.innerText = (Math.pow((1+rateValue/100),yearValue)).toFixed(4)
+                break;
+            case "F/A":
+                title.innerText = "Series Compound\nAmount Factor"
+                output.innerText = ((Math.pow((1+rateValue/100),yearValue)-1)/(rateValue/100)).toFixed(4)
+                break;
+            case "P/F":
+                title.innerText = "Present Worth\nFactor"
+                output.innerText = (1/(Math.pow((1+rateValue/100),yearValue))).toFixed(4)
+                break;         
+            case "P/A":
+                title.innerText = "Series Present\nWorth Factor"
+                output.innerText = ((Math.pow((1+rateValue/100),yearValue)-1)/((rateValue/100)*Math.pow((1+rateValue/100),yearValue))).toFixed(4)
+                break;  
+            case "P/G":
+                title.innerText = "Arithmetic Gradient\nPresent Worth Factor"
+                output.innerText = ((Math.pow((1+rateValue/100),yearValue)-(rateValue/100)*yearValue-1)/(Math.pow((rateValue/100),2)*Math.pow((1+rateValue/100),yearValue))).toFixed(4)
+                break;
+            case "A/F":
+                title.innerText = "Sinking Fund\nFactor"
+                output.innerText = (1/((Math.pow((1+rateValue/100),yearValue)-1)/(rateValue/100))).toFixed(4)
+                break; 
+            case "A/P":
+                title.innerText = "Capital Recovery\n Factor"
+                output.innerText = (1/((Math.pow((1+(rateValue/100)),yearValue)-1)/((rateValue/100)*Math.pow((1+(rateValue/100)),yearValue)))).toFixed(4)
+                break;
+            case "A/G":
+                title.innerText = "Arithmetic Gradient\nUniform Series Factor"
+                output.innerText = ((1/(rateValue/100))-yearValue/(Math.pow((1+rateValue/100),yearValue)-1)).toFixed(4)
+                break;
+        }
+    }
+
+    //run first calculation
+    calculate()
+</script>

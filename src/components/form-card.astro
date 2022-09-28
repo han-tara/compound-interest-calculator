@@ -1,0 +1,53 @@
+---
+import NumberField  from "./inputs/number-field.astro"
+import FactorField from "./inputs/factor-field.astro"
+---
+<style>
+    .shadow {
+        box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.25);
+    }
+</style>
+
+<div class="lg:py-16 py-8 lg:px-12 px-8  bg-[#F1F2F6] rounded-[42px] shadow w-fit h-fit flex flex-col gap-10">
+    <NumberField name="Rate (i)" id="rate" startingValue="10"/>
+    <NumberField name="Year (n)" id="year" startingValue="5"/>
+    <FactorField/>
+</div>
+
+<script is:inline>
+    //elements
+    const rate = document.getElementById('rate')
+    const year = document.getElementById('year')
+    const factor = document.getElementById('factor')
+
+    //input value
+    let rateValue = rate.value
+    let yearValue = year.value
+    let factorValue = factor.value
+
+    rate.onchange = function () {
+        if (rate.value != "") { //update only if value is not empty
+            rateValue = rate.value
+            calculate()
+        } else {
+            rate.value = rateValue //reset value
+        }
+    }
+    year.onchange = function () {
+        if (year.value != "") { //update only if value is not empty
+            yearValue = year.value
+            calculate()
+        } else {
+            year.value = yearValue //reset value
+        }
+    }
+    factor.onchange = function () {
+        if (factor.value != "") { //update only if value is not empty
+            factorValue = factor.value
+            calculate()
+        } else {
+            factor.value = factorValue //reset value
+        }
+    }
+
+</script>

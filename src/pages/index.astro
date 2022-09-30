@@ -1,6 +1,7 @@
 ---
 import Form from '../components/form-card.astro'
 import Output from '../components/output-card.astro';
+import Links from '../components/links.astro';
 ---
 
 <html lang="en">
@@ -12,6 +13,7 @@ import Output from '../components/output-card.astro';
 		<title>Compound Interest Factor</title>
 	</head>
 	<body class="w-full h-screen flex lg:flex-row flex-col-reverse items-center justify-center lg:gap-4 xs:gap-16 gap-6 bg-[#F1F2F6]">
+		<Links style={"lg:hidden flex"}/>
 		<Form/>
 		<Output/>
 	</body>
